@@ -327,7 +327,7 @@ def get_valid_embeddings(embedding_directories):
     return embs
 
 class EmbbeddingRegex:
-    STR_PATTERN = r"(embedding:)?(?:({}[\w\.\-\!\$\/\\]+(\.safetensors|\.pt|\.bin)|(?(1)[\w\.\-\!\$\/\\]+|(?!)))(\.safetensors|\.pt|\.bin)?)(?:(:)(\d+\.?\d*|\d*\.\d+))?"
+    STR_PATTERN = r"(embedding:)?(?:({}[\w\.\-\!\$\/\\]+(\.safetensors|\.pt|\.bin)|[\w\.\-\!\$\/\\]+)(\.safetensors|\.pt|\.bin)?)(?:(:)(\d+\.?\d*|\d*\.\d+))?"
     def __init__(self, embedding_directory) -> None:
         self.embedding_directory = embedding_directory
         self.embeddings = get_valid_embeddings(self.embedding_directory)  if self.embedding_directory is not None else {}
