@@ -65,7 +65,14 @@ class ClassicTextProcessingEngine:
         populate_self_variables(self, tokenizer)
         self._tokenizer = tokenizer
 
+        self.embedding_key = embedding_key
+        self.embedding_directory = embedding_dir
+
         self.embeddings = EmbeddingDatabase(self.tokenizer, embedding_expected_shape)
+
+        if embedding_dir:
+            self.embeddings.add_embedding_dir(embedding_dir)
+            self.embeddings.load_textual_inversion_embeddings()
 
         self.text_encoder = text_encoder
         self._try_get_embedding = tokenizer._try_get_embedding
