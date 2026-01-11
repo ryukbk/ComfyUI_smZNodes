@@ -336,6 +336,11 @@ class EmbbeddingRegex:
         self.pattern = re.compile(emb_re, flags=re.MULTILINE | re.UNICODE | re.IGNORECASE)
 
 def parse_and_register_embeddings(self, text: str):
+    import folder_paths
+
+    if not self.embedding_directory:
+        self.embedding_directory = folder_paths.get_folder_paths("embeddings")
+
     embr = EmbbeddingRegex(self.embedding_directory)
     embs = embr.embeddings
     matches = embr.pattern.finditer(text)
